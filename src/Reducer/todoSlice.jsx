@@ -47,7 +47,7 @@ const todoSlice =  createSlice({
                     val.name = task
                 }    
             })
-
+            localStorage.setItem('todo', JSON.stringify(state.todoList))
         }
     }
 
