@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import reducer
 import { addToddo } from '../../../Reducer/todoSlice'; 
 import ToDoList from '../ToDoList/todoList';
+import { Container, FormControl, TextField, Button } from '@mui/material';
 const TodoForm = () => {
 
     // state
@@ -31,11 +32,27 @@ const TodoForm = () => {
 
     return (
         <div>
-            <form>
-                <input type="text" value={task} onChange={(event) => setTask(event.target.value)}></input>
-                <button onClick={dispatchAddTodo}>Add</button>
-            </form>
-            <ToDoList></ToDoList>
+						<Container fixed>
+                <FormControl>
+									<TextField
+										id="outlined-password-input"
+										label="Enter Task"
+										type="text"
+										size="small"
+										margin="normal"
+										value={task} onChange={(event) => setTask(event.target.value)}
+									/>
+									{/* <TextField
+										id="outlined-password-input"
+										label="Enter details"
+										size="small"
+										type="text"
+										margin="normal"
+									/> */}
+									<Button variant="contained" margin="normal" onClick={dispatchAddTodo}>Add</Button>
+                </FormControl>
+                <ToDoList></ToDoList>
+						</Container>
         </div>
     );
 }

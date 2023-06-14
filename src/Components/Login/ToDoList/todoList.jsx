@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTodo, editTodo } from '../../../Reducer/todoSlice'; 
 import UpdateModal from './UpdateModal';
-import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody } from '@mui/material';
+import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Button, ButtonGroup } from '@mui/material';
 import {Checkbox} from '@mui/material';
 
 const ToDoList = () => {
@@ -25,7 +25,6 @@ const ToDoList = () => {
                             <TableCell>Id</TableCell>
                             <TableCell>Name</TableCell>
                             <TableCell>Actions</TableCell>
-                            <TableCell>Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -37,20 +36,29 @@ const ToDoList = () => {
                                 </TableCell>
                                 <TableCell>{val.id}</TableCell>
                                 <TableCell>{val.name}</TableCell>
-                                <TableCell>
-                                    <button onClick={() => {
-                                        setOpen(true)
-                                        dispatch(editTodo(val.id))
-                                    }}>Edit</button>
-                                </TableCell>
-                                <TableCell>
-                                    <button onClick={() => {
+																<TableCell>
+																<ButtonGroup variant="text" aria-label="text button group">
+																	<Button onClick={() => {
+																					setOpen(true)
+																					dispatch(editTodo(val.id))
+																			}}>Edit	
+																	</Button>
+  																<Button  onClick={() => {
                                         dispatch(deleteTodo(val.id))
-                                    }}>Delete</button>
-                                </TableCell>
+                                    }}>Delete
+																	</Button>
+																</ButtonGroup>
+																</TableCell>
                             </TableRow>
                         )
                     })}
+										{todoList.length === 0 && 
+												<TableRow align="center">
+													<TableCell>
+														No Record Found
+													</TableCell>
+												</TableRow>
+										}
                     </TableBody>
                 </Table>
             </TableContainer>
